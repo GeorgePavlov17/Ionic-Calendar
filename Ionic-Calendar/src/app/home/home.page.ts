@@ -20,7 +20,8 @@ export class HomePage {
   constructor() {}
 
   setToday() {
-
+    this.myCal.currentDate = new Date();
+    this.myCal.update();
   }
 
   calendarBack() {
