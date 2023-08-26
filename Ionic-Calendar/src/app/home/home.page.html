@@ -34,6 +34,28 @@
     [calendarMode]="calendar.mode"
     (onTitleChanged)="viewTitle = $event"
     [startingDayWeek]="1"
+    [startHour]="8"
+    [endHour]="20"
   >
   </calendar>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button id="inputmodal">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-modal #modal trigger="inputmodal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>New event</ion-title>
+          <ion-buttons slot="end">
+            <!-- <ion-button (click)="closeModal()"> Close </ion-button> -->
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content> My content </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

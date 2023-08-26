@@ -14,6 +14,7 @@ export class HomePage {
   };
 
   public viewTitle = '';
+  public eventSource: any[] = [];
 
   @ViewChild(CalendarComponent) myCal!: CalendarComponent;
 
