@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CalendarMode } from 'ionic6-calendar';
+import { Component, ViewChild } from '@angular/core';
+import { CalendarComponent, CalendarMode } from 'ionic6-calendar';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +9,26 @@ import { CalendarMode } from 'ionic6-calendar';
 export class HomePage {
 
   calendar = {
-    mode: 'month' as CalendarMode
+    mode: 'month' as CalendarMode,
+    currentDate: new Date(),
   };
 
+  public viewTitle = '';
+
+  @ViewChild(CalendarComponent) myCal!: CalendarComponent;
+
   constructor() {}
+
+  setToday() {
+
+  }
+
+  calendarBack() {
+    this.myCal.slidePrev();
+  }
+
+  calendarForward() {
+    this.myCal.slideNext();
+  }
 
 }
