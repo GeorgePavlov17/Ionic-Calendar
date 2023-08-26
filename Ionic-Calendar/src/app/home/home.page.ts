@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CalendarMode } from 'ionic6-calendar';
 
 @Component({
   selector: 'app-home',
@@ -6,6 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+
+  calendar = {
+    mode: 'month' as CalendarMode
+  };
 
   constructor() {}
 
