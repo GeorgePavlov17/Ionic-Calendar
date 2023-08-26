@@ -31,11 +31,14 @@
   </ion-row>
 
   <calendar
+    [eventSource]="eventSource"
     [calendarMode]="calendar.mode"
     (onTitleChanged)="viewTitle = $event"
     [startingDayWeek]="1"
     [startHour]="8"
     [endHour]="20"
+    [autoSelect]="false"
+    (onTimeSelected)="onTimeSelected($event)"
   >
   </calendar>
 
@@ -79,11 +82,33 @@
         </div>
 
         <div class="group">
-          <ion-item lines="none">
+          <ion-item>
             <ion-label> All-day </ion-label>
             <ion-toggle [(ngModel)]="newEvent.allDay"></ion-toggle>
-            <ion-item></ion-item>
           </ion-item>
+          <ion-item (click)="showStart = !showStart">
+            <ion-label> Starts </ion-label>
+            <ion-text slot="end"> {{ formattedStart }} </ion-text>
+          </ion-item>
+          <ion-datetime
+            #start
+            *ngIf="showStart"
+            [value]="newEvent.startTime"
+            [presentation]="newEvent.allDay ? 'date' : 'time-date'"
+            (ionChange)="startChanged(start.value)"
+          ></ion-datetime>
+
+          <ion-item (click)="showEnd = !showEnd">
+            <ion-label> Ends </ion-label>
+            <ion-text slot="end"> {{ formattedEnd }} </ion-text>
+          </ion-item>
+          <ion-datetime
+            #end
+            *ngIf="showEnd"
+            [value]="newEvent.endTime"
+            [presentation]="newEvent.allDay ? 'date' : 'time-date'"
+            (ionChange)="endChanged(end.value)"
+          ></ion-datetime>
         </div>
       </ion-content>
     </ng-template>
