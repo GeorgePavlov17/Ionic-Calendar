@@ -102,4 +102,8 @@ export class HomePage implements OnInit {
 
     this.modal.dismiss();
   }
+
+  onEventSelected(event: any) {
+    console.log(event);
+  }
 }

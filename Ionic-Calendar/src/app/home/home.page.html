@@ -39,6 +39,9 @@
     [endHour]="20"
     [autoSelect]="false"
     (onTimeSelected)="onTimeSelected($event)"
+    (onEventSelected)="onEventSelected($event)"
+    [monthviewDisplayEventTemplate]="template"
+    [weekviewAllDayEventTemplate]="weekviewAllDayEventTemplate"
   >
   </calendar>
 
@@ -113,4 +116,20 @@
       </ion-content>
     </ng-template>
   </ion-modal>
+
+  <ng-template #template let-view="view" let-row="row" let-col="col">
+    {{ view.dates[row*7+col].label }}
+    <div class="indicator-container">
+      <div
+        class="event-indicator"
+        *ngFor="let e of view.dates[row*7+col].events"
+      ></div>
+    </div>
+  </ng-template>
+
+  <ng-template #weekviewAllDayEventTemplate let-displayEvent="displayEvent">
+    <div class="calendar-event-inner week-event">
+      {{ displayEvent.event.title }}
+    </div>
+  </ng-template>
 </ion-content>
