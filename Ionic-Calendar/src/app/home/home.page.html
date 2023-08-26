@@ -45,13 +45,27 @@
     </ion-fab-button>
   </ion-fab>
 
-  <ion-modal #modal trigger="inputmodal">
+  <ion-modal
+    #modal
+    trigger="inputmodal"
+    [presentingElement]="presentingtElement"
+  >
     <ng-template>
-      <ion-header>
-        <ion-toolbar color="primary">
+      <ion-header class="ion-no-border">
+        <ion-toolbar color="light">
+          <ion-buttons slot="start">
+            <ion-button (click)="modal.dismiss()"> Cancel </ion-button>
+          </ion-buttons>
           <ion-title>New event</ion-title>
           <ion-buttons slot="end">
-            <!-- <ion-button (click)="closeModal()"> Close </ion-button> -->
+            <ion-button
+              color="primary"
+              strong
+              (click)="scheduleEvent()"
+              [disabled]="!newEvent.title"
+            >
+              Add
+            </ion-button>
           </ion-buttons>
         </ion-toolbar>
       </ion-header>

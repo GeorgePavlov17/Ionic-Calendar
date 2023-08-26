@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { IonRouterOutlet } from '@ionic/angular';
 import { CalendarComponent, CalendarMode } from 'ionic6-calendar';
 
 @Component({
@@ -7,18 +8,27 @@ import { CalendarComponent, CalendarMode } from 'ionic6-calendar';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  @ViewChild(CalendarComponent) myCal!: CalendarComponent;
 
   calendar = {
     mode: 'month' as CalendarMode,
     currentDate: new Date(),
   };
 
+  newEvent = {
+    title: '',
+    allDay: false,
+    startTime: null,
+    endTime: null
+  };
+
   public viewTitle = '';
   public eventSource: any[] = [];
+  public presentingtElement: any = null;
 
-  @ViewChild(CalendarComponent) myCal!: CalendarComponent;
-
-  constructor() {}
+  constructor(private ionRouterOutlet: IonRouterOutlet) {
+    this.presentingtElement = ionRouterOutlet.nativeEl;
+  }
 
   setToday() {
     this.myCal.currentDate = new Date();
@@ -31,6 +41,10 @@ export class HomePage {
 
   calendarForward() {
     this.myCal.slideNext();
+  }
+
+  scheduleEvent() {
+
   }
 
 }
